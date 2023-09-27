@@ -54,6 +54,49 @@ namespace jobs.Controllers
                 return View();
             }
         }
+        public ActionResult CreateSector()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateSector(Sector sector)
+        {
+            string IdSector = Guid.NewGuid().ToString("N");
+
+            string IdNave = Guid.NewGuid().ToString("N");
+            Nave nave = new Nave();
+            nave.NameNave= sector.nave.ToString();
+            nave.IdNave = IdNave.ToString();
+            nave.ColumnaNumber= sector.columna.ToString();
+
+            string IdColumna = Guid.NewGuid().ToString("N");
+            Columna columna = new Columna();
+            columna.IdColumna = IdColumna;
+            columna.ColumnaNumber = sector.columna.ToString();
+            columna.LedPosicion = sector.led;
+
+            string IdLed = Guid.NewGuid().ToString("N");
+            Leds led = new Leds();
+            led.IdLed= IdLed;
+            led.LedPosicion=sector.led.ToString();
+            Sector sector1 = new Sector();
+            List<Nave> naves = new List<Nave>();
+            naves.Add(nave);
+            sector1.nave = naves;
+            sector1.Name=sector.Name;
+            sector1.columna= columna.ToString();
+            sector1.led = led.ToString();
+
+            SetResponse response = firebaseClient.Set("Sector/" + IdSector, sector1);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return View();
+            }
+            else
+            {
+                return View();
+            }
+        }
         public ActionResult Delete()
         {
             return View();
@@ -62,5 +105,5 @@ namespace jobs.Controllers
         {
             return View();
         }
-    }
+    } 
 }

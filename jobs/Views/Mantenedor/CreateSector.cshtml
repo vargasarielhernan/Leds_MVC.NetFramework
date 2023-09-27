@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "CreateSector";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h2>Crear Sector</h2>
+</div>
+<div>
+    <form action="@Url.Action("CreateSector","Mantenedor")" method="post">
+        <div>
+            <label>Name</label>
+            <input type="text" name="Name" />
+        </div>
+        <div>
+            <label>NaveName</label>
+            <input type="text" name="nave" />
+        </div>
+        <div>
+            <label>ColumnaNumber</label>
+            <input type="text" name="columna" />
+        </div>
+        <div>
+            <label>LedPosicion</label>
+            <input type="text" name="led" />
+        </div>
+        <hr />
+        <button type="submit">Registrar</button>
+    </form>
+</div>
+
