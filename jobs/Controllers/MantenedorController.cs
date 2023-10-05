@@ -10,6 +10,7 @@ using FireSharp.Interfaces;
 using Newtonsoft;
 using jobs.Models;
 using FireSharp.Response;
+using System.Configuration;
 
 namespace jobs.Controllers
 {
@@ -21,8 +22,8 @@ namespace jobs.Controllers
         {
             IFirebaseConfig config = new FirebaseConfig
             {
-                AuthSecret = "jvvMEAlj2bdHwVFj83iX45qRECF04YP9KUlfqnl1",
-                BasePath = "https://prueba-repuesto-default-rtdb.firebaseio.com/"
+                AuthSecret = ConfigurationManager.AppSettings["keyAPI"],
+                BasePath = ConfigurationManager.AppSettings["DBUrl"]
             };
 
             firebaseClient = new FirebaseClient(config);
