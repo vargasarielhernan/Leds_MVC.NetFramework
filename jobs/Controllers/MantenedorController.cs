@@ -11,6 +11,7 @@ using Newtonsoft;
 using jobs.Models;
 using FireSharp.Response;
 using System.Configuration;
+using Newtonsoft.Json;
 
 namespace jobs.Controllers
 {
@@ -34,7 +35,23 @@ namespace jobs.Controllers
         // GET: Mantenedor
         public ActionResult Index()
         {
-            return View();
+            Dictionary<string, Sector> lista = new Dictionary<string, Sector>();
+            FirebaseResponse response = firebaseClient.Get("Sector");
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                lista = JsonConvert.DeserializeObject<Dictionary<string, Sector>>(response.Body);
+            List<Sector> sectors = new List<Sector>();
+            foreach (KeyValuePair<string, Sector> elemento in lista)
+            {
+                sectors.Add(new Sector()
+                {
+                    IdSector = elemento.Key,
+                    Name = elemento.Value.Name,
+                    led = elemento.Value.led,
+                    nave = elemento.Value.nave,
+                    columna= elemento.Value.columna,
+                });
+            }
+            return View(sectors);
         }
         
         public ActionResult CreateUser()
@@ -81,9 +98,9 @@ namespace jobs.Controllers
             led.IdLed= IdLed;
             led.LedPosicion=sector.led.ToString();
             Sector sector1 = new Sector();
-            List<Nave> naves = new List<Nave>();
-            naves.Add(nave);
-            sector1.nave = naves;
+            //List<Nave> naves = new List<Nave>();
+            //naves.Add(nave);
+            sector1.nave = nave.ToString();
             sector1.Name=sector.Name;
             sector1.columna= columna.ToString();
             sector1.led = led.ToString();

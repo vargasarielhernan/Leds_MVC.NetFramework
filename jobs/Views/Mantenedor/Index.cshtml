@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4>Lista de Sectores</h4>
+    </div>
+    <div class="panel-body">
+        <a class="btn-dark" href="@Url.Action("CreateSector","Mantenedor")">Create Sector</a>
+        <hr />
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Sector</th>
+                    <th scope="col">Nave</th>
+                    <th scope="col">columna</th>
+                    <th scope="col">led</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IdSector</td>
+                        <td>@item.Name</td>
+                        <td>@item.nave</td>
+                        <td>@item.columna</td>
+                        <td>@item.led</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

@@ -10,7 +10,7 @@ namespace jobs.Models
     {
         public string IdSector {  get; set; }
         public string Name { get; set; } 
-        public List<Nave> nave { get; set; }
+        public string nave { get; set; }
         public string columna { get; set; }
         public string led { get; set; }
     }
