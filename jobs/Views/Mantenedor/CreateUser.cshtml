@@ -11,7 +11,7 @@
     <form action="@Url.Action("CreateUser","Mantenedor")" method="post">
         <div>
             <label>nombre</label>
-            <input type="text" name="UserName"/>
+            <input type="text" name="UserName" />
         </div>
         <div>
             <label>Email</label>
@@ -23,6 +23,7 @@
         </div>
         <hr />
         <button type="submit">Registrarse</button>
+        <a href="@Url.Action("Index","Mantenedor")">Cancelar</a>
     </form>
 </div>
 

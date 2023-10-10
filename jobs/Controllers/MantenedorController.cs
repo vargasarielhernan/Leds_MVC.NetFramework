@@ -53,7 +53,12 @@ namespace jobs.Controllers
             }
             return View(sectors);
         }
-        
+        public ActionResult Delete(string id)
+        {
+            FirebaseResponse response = firebaseClient.Delete("Sector/" + id);
+            return RedirectToAction("Index", "mantenedor");
+        }
+
         public ActionResult CreateUser()
         {
             return View();
@@ -115,13 +120,28 @@ namespace jobs.Controllers
                 return View();
             }
         }
-        public ActionResult Delete()
+        public ActionResult UpdateSector(string id)
         {
-            return View();
+            FirebaseResponse response = firebaseClient.Get("Sector/"+id);
+            Sector sector = response.ResultAs<Sector>();
+            sector.IdSector= id;
+            return View(sector);
         }
-        public ActionResult Update()
+        [HttpPost]
+        public ActionResult UpdateSector(Sector sector)
         {
-            return View();
+            string IdSector = sector.IdSector;
+            sector.IdSector = null;
+
+            FirebaseResponse response = firebaseClient.Update("Sector/" + IdSector, sector);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return RedirectToAction("Index", "mantenedor");
+            }
+            else
+            {
+                return View();
+            }
         }
     } 
 }

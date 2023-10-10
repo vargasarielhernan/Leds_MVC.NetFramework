@@ -1,0 +1,34 @@
+﻿@model jobs.Models.Sector
+@{
+    ViewBag.Title = "UpdateSector";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h2>Edit Sector</h2>
+</div>
+<div>
+    <form action="@Url.Action("UpdateSector","Mantenedor")" method="post">
+        <input type="hidden" name="IdSector" value="@Html.DisplayTextFor(m => m.IdSector)" />
+        <div>
+            <label>Name</label>
+            <input type="text" name="Name" value="@Html.DisplayTextFor(m => m.Name)" />
+        </div>
+        <div>
+            <label>NaveName</label>
+            <input type="text" name="nave" value="@Html.DisplayTextFor(m => m.nave)" />
+        </div>
+        <div>
+            <label>ColumnaNumber</label>
+            <input type="text" name="columna" value="@Html.DisplayTextFor(m => m.columna)" />
+        </div>
+        <div>
+            <label>LedPosicion</label>
+            <input type="text" name="led" value="@Html.DisplayTextFor(m => m.led)" />
+        </div>
+        <hr />
+        <button type="submit">Aceptar</button>
+        <a href="@Url.Action("Index","Mantenedor")">Cancelar</a>
+    </form>
+</div>
+

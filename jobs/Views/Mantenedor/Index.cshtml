@@ -29,6 +29,10 @@
                         <td>@item.nave</td>
                         <td>@item.columna</td>
                         <td>@item.led</td>
+                        <td> <a href="@Url.Action("UpdateSector","Mantenedor", new {id=item.IdSector})">Edit</a> 
+                             <a href="@Url.Action("Delete","Mantenedor", new {id=item.IdSector})">Delete</a>
+
+                        </td>
                     </tr>
                 }
             </tbody>
