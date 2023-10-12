@@ -183,6 +183,7 @@
     <Content Include="Views\Mantenedor\UpdateSector.cshtml" />
     <Content Include="Views\Shared\FirstPage.cshtml" />
     <Content Include="Views\Mantenedor\Inicio.cshtml" />
+    <Content Include="Views\Mantenedor\NaveLeds.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

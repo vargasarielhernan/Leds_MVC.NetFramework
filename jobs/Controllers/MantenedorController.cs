@@ -147,5 +147,9 @@ namespace jobs.Controllers
         {
             return View();
         }
+        public ActionResult NaveLeds()
+        {
+            return View();
+        }
     }
 }
