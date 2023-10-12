@@ -48,7 +48,7 @@ namespace jobs.Controllers
                     Name = elemento.Value.Name,
                     led = elemento.Value.led,
                     nave = elemento.Value.nave,
-                    columna= elemento.Value.columna,
+                    columna = elemento.Value.columna,
                 });
             }
             return View(sectors);
@@ -88,9 +88,9 @@ namespace jobs.Controllers
 
             string IdNave = Guid.NewGuid().ToString("N");
             Nave nave = new Nave();
-            nave.NameNave= sector.nave.ToString();
+            nave.NameNave = sector.nave.ToString();
             nave.IdNave = IdNave.ToString();
-            nave.ColumnaNumber= sector.columna.ToString();
+            nave.ColumnaNumber = sector.columna.ToString();
 
             string IdColumna = Guid.NewGuid().ToString("N");
             Columna columna = new Columna();
@@ -100,14 +100,14 @@ namespace jobs.Controllers
 
             string IdLed = Guid.NewGuid().ToString("N");
             Leds led = new Leds();
-            led.IdLed= IdLed;
-            led.LedPosicion=sector.led.ToString();
+            led.IdLed = IdLed;
+            led.LedPosicion = sector.led.ToString();
             Sector sector1 = new Sector();
             //List<Nave> naves = new List<Nave>();
             //naves.Add(nave);
             sector1.nave = nave.ToString();
-            sector1.Name=sector.Name;
-            sector1.columna= columna.ToString();
+            sector1.Name = sector.Name;
+            sector1.columna = columna.ToString();
             sector1.led = led.ToString();
 
             SetResponse response = firebaseClient.Set("Sector/" + IdSector, sector1);
@@ -122,9 +122,9 @@ namespace jobs.Controllers
         }
         public ActionResult UpdateSector(string id)
         {
-            FirebaseResponse response = firebaseClient.Get("Sector/"+id);
+            FirebaseResponse response = firebaseClient.Get("Sector/" + id);
             Sector sector = response.ResultAs<Sector>();
-            sector.IdSector= id;
+            sector.IdSector = id;
             return View(sector);
         }
         [HttpPost]
@@ -143,5 +143,9 @@ namespace jobs.Controllers
                 return View();
             }
         }
-    } 
+        public ActionResult Inicio()
+        {
+            return View();
+        }
+    }
 }

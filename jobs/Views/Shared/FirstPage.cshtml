@@ -1,0 +1,45 @@
+﻿@*@{
+    ViewBag.Title = "FirstPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}*@
+
+<!DOCTYPE html>
+@using System.Web.Optimization;
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenaris Ligths</title>
+    @Styles.Render("~/bundles/jquery")
+    @Styles.Render("~/bundles/jqueryval")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="@Url.Content("~/Content/navdropdown.css")" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/e3725c1fd8.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <a>@Html.ActionLink("Tenaris Ligths", "Inicio", "Mantenedor", new { @class = "brand" })</a>
+        @*<a href="#" class="brand">Tenaris Ligth</a>*@
+        <div class="navigation">
+            <div class="navigation-items">
+                <a>@Html.ActionLink("Crear Usuario", "CreateUser", "Mantenedor")</a>
+                <a href="#">Sector</a>
+                <a href="#">Nave</a>
+                <a href="#">Iniciar Sesion</a>
+            </div>
+        </div>
+    </header>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Tenaris Leds</p>
+        </footer>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
