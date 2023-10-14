@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "GetNavigationItems";
+    Layout = "~/Views/Shared/FirstPage.cshtml";
+}
+
+@model jobs.Models.drop
+
+
+<div>
+    @Html.DropDownListFor(model => model.SectorSeleccionado, (SelectList)ViewBag.Items, "Selecciona un Sector")    
+    @Html.DropDownListFor(model => model.NaveSeleccionada, (SelectList)ViewBag.Items, "Selecciona un Nave")    
+</div>
+

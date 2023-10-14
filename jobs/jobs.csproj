@@ -144,6 +144,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Columna.cs" />
+    <Compile Include="Models\drop.cs" />
     <Compile Include="Models\Leds.cs" />
     <Compile Include="Models\Nave.cs" />
     <Compile Include="Models\Sector.cs" />
@@ -184,6 +185,7 @@
     <Content Include="Views\Shared\FirstPage.cshtml" />
     <Content Include="Views\Mantenedor\Inicio.cshtml" />
     <Content Include="Views\Mantenedor\NaveLeds.cshtml" />
+    <Content Include="Views\Mantenedor\GetNavigationItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
