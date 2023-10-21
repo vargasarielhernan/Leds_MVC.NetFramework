@@ -1,0 +1,10 @@
+﻿@model jobs.Models.Sector
+
+<option value="">Elegir Nave</option>
+@if (ViewBag.Slist != null)
+{
+    foreach (var item in ViewBag.Slist)
+    {
+        <option value="@item">@item.Text</option>
+    }
+}

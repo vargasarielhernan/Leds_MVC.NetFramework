@@ -186,6 +186,7 @@
     <Content Include="Views\Mantenedor\Inicio.cshtml" />
     <Content Include="Views\Mantenedor\NaveLeds.cshtml" />
     <Content Include="Views\Mantenedor\GetNavigationItems.cshtml" />
+    <Content Include="Views\Shared\DisplayNave.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

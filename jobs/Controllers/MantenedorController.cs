@@ -13,6 +13,10 @@ using FireSharp.Response;
 using System.Configuration;
 using Newtonsoft.Json;
 using System.Xml.Linq;
+using System.Collections;
+using Newtonsoft.Json.Linq;
+using static System.Net.Mime.MediaTypeNames;
+using System.Web.Optimization;
 
 namespace jobs.Controllers
 {
@@ -36,6 +40,12 @@ namespace jobs.Controllers
         // GET: Mantenedor
         public ActionResult Index()
         {
+            List<Sector> sectors = new List<Sector>();
+            sectors = listaSectores();
+            return View(sectors);
+        }
+        public List<Sector> listaSectores()
+        {
             Dictionary<string, Sector> lista = new Dictionary<string, Sector>();
             FirebaseResponse response = firebaseClient.Get("Sector");
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -52,8 +62,9 @@ namespace jobs.Controllers
                     columna = elemento.Value.columna,
                 });
             }
-            return View(sectors);
+            return sectors;
         }
+
         public ActionResult Delete(string id)
         {
             FirebaseResponse response = firebaseClient.Delete("Sector/" + id);
@@ -154,33 +165,19 @@ namespace jobs.Controllers
         }
         public ActionResult GetNavigationItems()
         {
-            Dictionary<string,Sector> lista = new Dictionary<string, Sector>();
-            FirebaseResponse response = firebaseClient.Get("Sector");
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                lista = JsonConvert.DeserializeObject<Dictionary<string, Sector>>(response.Body);
-            List<Sector> sectors = new List<Sector>();
-            var model =new drop();
-            model.SectorSeleccionado = new List<SelectListItem>();
-            model.NaveSeleccionada = new List<SelectListItem>();
-            foreach (KeyValuePair<string, Sector> elemento in lista)
-            {
-                sectors.Add(new Sector()
-                {
-                    IdSector = elemento.Key,
-                    Name = elemento.Value.Name,
-                    led = elemento.Value.led,
-                    nave = elemento.Value.nave,
-                    columna = elemento.Value.columna,
-                });                
-            }
-
-            foreach (var sector in sectors)
-            {
-                model.SectorSeleccionado.Add(new SelectListItem { Text = sector.Name, Value= sector.IdSector });
-                model.NaveSeleccionada.Add(new SelectListItem { Text = sector.nave, Value= sector.IdSector });
-            }
-                     
-            return View(model);
+            ViewBag.Sectorlist = new SelectList(listaSectores(), "IdSector", "Name");
+            //ViewBag.Sector = new SelectList(listaSectores(), "IdSector", "Name");
+            //ViewBag.nave = new SelectList(listaSectores(), "IdSector", "nave");
+            return View();
+        }    
+        public ActionResult GetNaves(string name)
+        {
+            //var nave =listaSectores().Where(s => s.IdSector == name).ToList();
+            //return Json(nave, JsonRequestBehavior.AllowGet);
+            List<Sector> selectedList = listaSectores().Where(x => x.IdSector == name).ToList();
+            ViewBag.Slist = new SelectList(selectedList, "IdSector", "nave");
+            return PartialView("DisplayNave");
         }
+
     }
 }

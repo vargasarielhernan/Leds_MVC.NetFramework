@@ -23,15 +23,14 @@
         <div class="navigation">
             <div class="navigation-items">
                 <a>@Html.ActionLink("Crear Usuario", "CreateUser", "Mantenedor")</a>
-                <a>@Html.ActionLink("Crear Sector", "CreateSector", "Mantenedor")</a>                
-                <a>@Html.ActionLink("Sectores", "index", "Mantenedor")</a>                
+                <a>@Html.ActionLink("Crear Sector", "CreateSector", "Mantenedor")</a>
+                <a>@Html.ActionLink("Sectores", "index", "Mantenedor")</a>
                 <a href="#">Iniciar Sesion</a>
             </div>
         </div>
     </header>
-    <div class="container body-content">
+    <div>
         @RenderBody()
-        <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Tenaris Leds</p>
         </footer>

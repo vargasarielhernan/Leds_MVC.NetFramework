@@ -4,11 +4,37 @@
     Layout = "~/Views/Shared/FirstPage.cshtml";
 }
 
-@model jobs.Models.drop
+@model jobs.Models.Sector
 
 
 <div>
-    @Html.DropDownListFor(model => model.SectorSeleccionado, (SelectList)ViewBag.Items, "Selecciona un Sector")    
-    @Html.DropDownListFor(model => model.NaveSeleccionada, (SelectList)ViewBag.Items, "Selecciona un Nave")    
+    @if (ViewBag.Sectorlist != null)
+    {
+        
+
+        @Html.DropDownListFor(m => m.IdSector, ViewBag.Sectorlist as SelectList, "Selecciona un Sector", new { @class = "form-control" })
+    }
+
+    @Html.DropDownListFor(m => m.nave, new SelectList(""), "Seleccionar Nave", new { @class = "form-control" })
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+     
+    $(document).ready(function () {
+        $("#IdSector").change(function () {
+            var name = $(this).val();
+            
+            $.ajax({
+                type: "GET",
+                url: "/mantenedor/getnaves?name=" + name,
+                contenttype: "html",
+                success: function (response) {
+                   
+                    $("#nave").empty();
+                    $("#nave").append(response);
+                }
+            })
+        })
+    })
+    </script>
 </div>
 
