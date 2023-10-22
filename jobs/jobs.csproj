@@ -187,6 +187,7 @@
     <Content Include="Views\Mantenedor\NaveLeds.cshtml" />
     <Content Include="Views\Mantenedor\GetNavigationItems.cshtml" />
     <Content Include="Views\Shared\DisplayNave.cshtml" />
+    <Content Include="Views\Shared\columnaLeds.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

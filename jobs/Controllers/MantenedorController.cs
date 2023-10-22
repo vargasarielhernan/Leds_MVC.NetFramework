@@ -167,7 +167,7 @@ namespace jobs.Controllers
         {
             ViewBag.Sectorlist = new SelectList(listaSectores(), "IdSector", "Name");
             return View();
-        }    
+        }
         public ActionResult GetNaves(string name)
         {
             List<Sector> selectedList = listaSectores().Where(x => x.IdSector == name).ToList();
@@ -175,5 +175,20 @@ namespace jobs.Controllers
             return PartialView("DisplayNave");
         }
 
+        public ActionResult Buscar(string dropdown)
+        {
+            string id=dropdown;
+            List<Sector> sectores = listaSectores();
+            List<Sector> selectedList = sectores.Where(x => x.IdSector == id).ToList();
+            if (selectedList.Count != 0)
+            {
+                string naveSeleccionada = selectedList[0].nave.ToString();
+
+                List<Sector> naveList = sectores.Where(x => x.nave == naveSeleccionada).ToList();
+                ViewBag.Nlist = new SelectList(naveList, "IdSector", "columna");
+            }
+
+            return PartialView("columnaLeds");
+        }
     }
 }

@@ -1,0 +1,18 @@
+﻿@model jobs.Models.Sector
+
+<link href="~/Content/.btn-neon.css" rel="stylesheet" />
+<div>
+
+    <h2>Buscar</h2>
+</div>
+<div class="btn-group">
+    <div class="separacion">
+        @if (ViewBag.Nlist != null)
+        {
+            foreach (var item in ViewBag.Nlist)
+            {
+                <a href="#" class="btn-neon">@item.Text</a>
+            }
+        }
+    </div>
+</div>
