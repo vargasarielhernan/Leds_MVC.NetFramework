@@ -5,36 +5,39 @@
 }
 
 @model jobs.Models.Sector
+<link href="~/Content/.btn-neon.css" rel="stylesheet" />
+
+<div class="separacion">
+   
+
+        @if (ViewBag.Sectorlist != null)
+        {
 
 
-<div>
-    @if (ViewBag.Sectorlist != null)
-    {
-        
+            @Html.DropDownListFor(m => m.IdSector, ViewBag.Sectorlist as SelectList, "Selecciona un Sector", new { @class = "btn-neon" })
+        }
 
-        @Html.DropDownListFor(m => m.IdSector, ViewBag.Sectorlist as SelectList, "Selecciona un Sector", new { @class = "form-control" })
-    }
+        @Html.DropDownListFor(m => m.nave, new SelectList(""), "Seleccionar Nave", new { @class = "btn-neon" })
+    <a href="#" class="btn-neon">Buscar</a>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script>
 
-    @Html.DropDownListFor(m => m.nave, new SelectList(""), "Seleccionar Nave", new { @class = "form-control" })
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script>
-     
-    $(document).ready(function () {
-        $("#IdSector").change(function () {
-            var name = $(this).val();
-            
-            $.ajax({
-                type: "GET",
-                url: "/mantenedor/getnaves?name=" + name,
-                contenttype: "html",
-                success: function (response) {
-                   
-                    $("#nave").empty();
-                    $("#nave").append(response);
-                }
+            $(document).ready(function () {
+                $("#IdSector").change(function () {
+                    var name = $(this).val();
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/mantenedor/getnaves?name=" + name,
+                        contenttype: "html",
+                        success: function (response) {
+
+                            $("#nave").empty();
+                            $("#nave").append(response);
+                        }
+                    })
+                })
             })
-        })
-    })
-    </script>
+        </script>
 </div>
 

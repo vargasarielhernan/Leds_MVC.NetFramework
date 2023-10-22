@@ -166,14 +166,10 @@ namespace jobs.Controllers
         public ActionResult GetNavigationItems()
         {
             ViewBag.Sectorlist = new SelectList(listaSectores(), "IdSector", "Name");
-            //ViewBag.Sector = new SelectList(listaSectores(), "IdSector", "Name");
-            //ViewBag.nave = new SelectList(listaSectores(), "IdSector", "nave");
             return View();
         }    
         public ActionResult GetNaves(string name)
         {
-            //var nave =listaSectores().Where(s => s.IdSector == name).ToList();
-            //return Json(nave, JsonRequestBehavior.AllowGet);
             List<Sector> selectedList = listaSectores().Where(x => x.IdSector == name).ToList();
             ViewBag.Slist = new SelectList(selectedList, "IdSector", "nave");
             return PartialView("DisplayNave");

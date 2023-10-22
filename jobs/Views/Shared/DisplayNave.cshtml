@@ -1,10 +1,10 @@
 ﻿@model jobs.Models.Sector
 
-<option value="">Elegir Nave</option>
+<option value="" class="btn-neon">Elegir Nave</option>
 @if (ViewBag.Slist != null)
 {
     foreach (var item in ViewBag.Slist)
     {
-        <option value="@item">@item.Text</option>
+        <option value="@item" class="btn-neon">@item.Text</option>
     }
 }
