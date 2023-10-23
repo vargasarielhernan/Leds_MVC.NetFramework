@@ -186,6 +186,7 @@ namespace jobs.Controllers
 
                 List<Sector> naveList = sectores.Where(x => x.nave == naveSeleccionada).ToList();
                 ViewBag.Nlist = new SelectList(naveList, "IdSector", "columna");
+                ViewBag.Leds = new SelectList(naveList, "columna", "led");
             }
 
             return PartialView("columnaLeds");
